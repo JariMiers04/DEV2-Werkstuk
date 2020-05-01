@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="nl  ">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <title>COVID19 Data</title>
+  </head>
+
+  <body>
+    <h1>Alle data van COVID19</h1>
+    <div id="mainData">
+      <div id="topHalf">
+        <h2>Coronavirus Cases:</h2>
+        <span id="totalCases"></span>
+        <h2>Deaths:</h2>
+        <span id="totalDeaths"></span>
+        <h2>Recovered:</h2>
+        <span id="totalRecovered"></span>
+      </div>
+    </div>
+    <div id="bottomHalf">
+      <canvas id="myChart"></canvas>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="./main.js" type="module"></script>
+  </body>
+</html>
