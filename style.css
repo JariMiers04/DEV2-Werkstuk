@@ -1,0 +1,40 @@
+body {
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    font-family: sans-serif;
+}
+
+#mainData {
+    margin: auto;
+    width: 60%;
+    margin-top: 5%;
+    box-sizing: border-box;
+    -webkit-box-shadow: 0px 10px 38px -1px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 10px 38px -1px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 10px 38px -1px rgba(0, 0, 0, 0.75);
+}
+
+#topHalf {
+    padding: 20px;
+}
+
+form select {
+    margin-left: 20px;
+}
+
+button {
+    margin-left: 20px;
+    background-color: lightgreen;
+    padding: 15px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+    color: white;
+}
+
+#bottomHalf {
+    margin-top: 5%;
+}

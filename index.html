@@ -10,6 +10,19 @@
   <body>
     <h1>Alle data van COVID19</h1>
     <div id="mainData">
+      <div id="countrySelect">
+        <h2>Landen selecteren</h2>
+        <form action="/action_page.php">
+          <label for="cars">Kies een land:</label>
+          <select id="cars" name="cars">
+            <option value="volvo">Volvo</option>
+            <option value="saab">Saab</option>
+            <option value="fiat">Fiat</option>
+            <option value="audi">Audi</option>
+          </select>
+          <button type="submit" onclick="./main.js">BEVESTIGEN</button>
+        </form>
+      </div>
       <div id="topHalf">
         <h2>Coronavirus Cases:</h2>
         <span id="totalCases"></span>
@@ -20,6 +33,7 @@
       </div>
     </div>
     <div id="bottomHalf">
+      <h1>Grafiek</h1>
       <canvas id="myChart"></canvas>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
