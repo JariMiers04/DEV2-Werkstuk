@@ -13,6 +13,7 @@ class allData {
     async fetch() {
         const response = await fetch("https://api.covid19api.com/all");
         const json = await response.json();
+        console.log(json);
     }
 }
 
@@ -26,16 +27,16 @@ class country extends allData {
     async fetchCountries() {
         const response = await fetch("https://api.covid19api.com/countries");
         const json = await response.json();
+        console.log(json);
     }
 }
 
 // deel1
 const test = new allData();
-let test2 = test.init();
-console.log(test);
-console.log(test2);
+console.log(test.init());
 
-// landen deel2
+
+// // landen deel2
 
 const countries = new country;
-console.log(countries);
+console.log(countries.init());
