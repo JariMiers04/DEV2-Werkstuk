@@ -17,9 +17,13 @@ class allData {
     }
 }
 
-class country extends allData {
-    constructor(allData) {
+class Country extends allData {
+    constructor(allData, htmlElement, chart) {
         super(allData);
+        this.countries = [];
+        this.htmlElement = document.getElementById(htmlElement);
+        this.chart = chart;
+
     }
     async init() {
         await this.fetchCountries();
@@ -27,7 +31,12 @@ class country extends allData {
     async fetchCountries() {
         const response = await fetch("https://api.covid19api.com/countries");
         const json = await response.json();
-        console.log(json);
+        console.log("Fetch JSON:", json);
+    }
+    bindEventsListeners() {
+        this.htmlElement = document.getElementById("land")
+        let inputsUser = document.getElementsByName('select');
+        console.log('Inputs', inputsUser);
     }
 }
 
