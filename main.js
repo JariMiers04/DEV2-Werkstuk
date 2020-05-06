@@ -20,32 +20,46 @@ class allData {
     }
     async init() {
         await this.fetch();
+        this.filter();
+        this.render();
     }
     async fetch() {
         const response = await fetch("https://api.covid19api.com/summary");
         const json = await response.json();
         console.log(json);
+        return new Country(location);
     }
     bindEventsListeners() {
         this.htmlElement = document.getElementById("land")
         let inputsUser = document.getElementsByName('select');
         console.log('Inputs', inputsUser);
     }
+    filter() {
+        this.countries.sort(Utils.sortCountriesBy(this.confirmed));
+        this.countries = this.countries.slice(0, 10);
+    }
+    render() {
+        let writeDropdown = '';
+        this.countries.forEach(country => {
+            writeDropdown += country.writeDropdown
+        });
+        this.htmlElement.insertAdjacentHTML('beforeend', writeDropdown);
+        this.bindEventsListeners();
+    }
 }
 
 
 class Country {
-    constructor(Countries) {
+    constructor(location) {
         // super(allData);
-        this.countries = Countries.Country;
-        this.confirmed = Countries.TotalConfirmed;
-        this.country_code = Countries.CountryCode;
-        this.test = console.log("12356");
+        this.countries = location.Countries;
+        this.confirmed = location.TotalConfirmed;
+        this.country_code = location.CountryCode;
 
     }
 
     get writeDropdown() {
-
+        return `<select id="land" name="land"><option value="${this.countries}">${this.countries}</option>`
     }
 
 }
@@ -53,3 +67,7 @@ class Country {
 // deel1
 const test = new allData();
 console.log(test.init());
+
+
+const testCountry = new Country(location);
+console.log("Countries inladen", testCountry);
