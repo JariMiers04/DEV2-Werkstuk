@@ -26,11 +26,12 @@ class allData {
     async fetch() {
         const response = await fetch("https://api.covid19api.com/summary");
         const json = await response.json();
-        console.log(json);
-        return new Country(location);
+        this.countries = json.locations.map(location => {
+            return new Country(location);
+        })
+        console.log('Fetch JSON', json)
     }
     bindEventsListeners() {
-        this.htmlElement = document.getElementById("land")
         let inputsUser = document.getElementsByName('select');
         console.log('Inputs', inputsUser);
     }
@@ -40,9 +41,6 @@ class allData {
     }
     render() {
         let writeDropdown = '';
-        this.countries.forEach(country => {
-            writeDropdown += country.writeDropdown
-        });
         this.htmlElement.insertAdjacentHTML('beforeend', writeDropdown);
         this.bindEventsListeners();
     }
