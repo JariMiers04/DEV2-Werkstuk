@@ -25,10 +25,13 @@ const Utils = {
         return colors[Math.floor(Math.random() * colors.length)];
     },
     sortCountriesBy(param) {
-        return function(a, b) {
-          return b[param] - a[param];
+        return function (a, b) {
+            return b[param] - a[param];
         }
     }
 }
 
 export default Utils;
+
+
+// werkcollege 9 DEV2

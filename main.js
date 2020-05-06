@@ -2,38 +2,29 @@
 
 import Utils from "./Utils.js";
 
+firebase.initializeApp({
+    apiKey: 'BwobZQQTto6nSzn9vvsp',
+    projectId: 'werkstuk-c1d86'
+});
+
+const database = firebase.firestore();
+const covid19api = database.collection("covid");
 
 // fetch inladen
 
 class allData {
-    constructor() {
-
+    constructor(htmlElement, chart) {
+        this.countries = [];
+        this.htmlElement = document.getElementById(htmlElement);
+        this.chart = chart;
     }
     async init() {
         await this.fetch();
     }
     async fetch() {
-        const response = await fetch("https://api.covid19api.com/all");
+        const response = await fetch("https://api.covid19api.com/summary");
         const json = await response.json();
         console.log(json);
-    }
-}
-
-class Country extends allData {
-    constructor(allData, htmlElement, chart) {
-        super(allData);
-        this.countries = [];
-        this.htmlElement = document.getElementById(htmlElement);
-        this.chart = chart;
-
-    }
-    async init() {
-        await this.fetchCountries();
-    }
-    async fetchCountries() {
-        const response = await fetch("https://api.covid19api.com/countries");
-        const json = await response.json();
-        console.log("Fetch JSON:", json);
     }
     bindEventsListeners() {
         this.htmlElement = document.getElementById("land")
@@ -42,12 +33,23 @@ class Country extends allData {
     }
 }
 
+
+class Country {
+    constructor(Countries) {
+        // super(allData);
+        this.countries = Countries.Country;
+        this.confirmed = Countries.TotalConfirmed;
+        this.country_code = Countries.CountryCode;
+        this.test = console.log("12356");
+
+    }
+
+    get writeDropdown() {
+
+    }
+
+}
+
 // deel1
 const test = new allData();
 console.log(test.init());
-
-
-// // landen deel2
-
-const countries = new country;
-console.log(countries.init());
