@@ -2,16 +2,6 @@
 
 import Utils from "./Utils.js";
 
-firebase.initializeApp({
-    apiKey: 'BwobZQQTto6nSzn9vvsp',
-    projectId: 'werkstuk-c1d86'
-});
-
-const database = firebase.firestore();
-const covid19api = database.collection("covid");
-
-// fetch inladen
-
 class allData {
     constructor(htmlElement, chart) {
         this.countries = [];
