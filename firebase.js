@@ -5,10 +5,9 @@ class Firebase {
             projectId,
         });
         this.database = firebase.firestore();
-        this.fileStorage = firebase.storage().ref();
     }
     get postsCollection() {
-        return this.database.collection("posts");
+        return this.database.collection("country");
     }
 }
 

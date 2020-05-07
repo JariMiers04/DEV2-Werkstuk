@@ -1,9 +1,9 @@
 "use strict";
 
 import Utils from "./Utils.js";
-// import {
-//     firebasePush
-// } from "./firebase.js";
+import {
+    firebasePush
+} from "./firebase.js";
 
 
 class allData {
@@ -17,6 +17,7 @@ class allData {
         await this.fetch();
         this.filter();
         this.render();
+        // this.uploadDataFirebase();
     }
     async fetch() {
         const response = await fetch("https://api.covid19api.com/summary");
@@ -25,15 +26,19 @@ class allData {
         this.countries = json.Countries.map(country => {
             return new Country(country);
         })
-        // global
-        this.global = json.Global.map(global => {
-            return new GlobalInfo(global);
-        })
+        // // global
+        // this.global = json.Global.map(global => {
+        //     return new GlobalInfo(global);
+        // })
         console.log('Fetch JSON', json)
     }
-    bindEventsListeners() {
+    submitForm() {
+
+    }
+    bindEvents() {
         let inputsUser = document.getElementsByName('select');
         console.log('Inputs', inputsUser);
+        this.formElement.addEventListener('submit', this.submitForm.bind(this));
     }
     filter() {
         // this.countries.sort(Utils.sortCountriesBy(this.confirmed));
@@ -42,8 +47,22 @@ class allData {
     render() {
         let writeDropdown = '';
         this.htmlElement.insertAdjacentHTML('beforeend', writeDropdown);
-        this.bindEventsListeners();
+        this.writeDropdownList();
+        this.bindEvents();
     }
+
+    // landen van api zetten in een html dropdownlist
+    writeDropdownList() {
+        for (i = 0; i < this.countries.length; i++) {
+            let addContent = this.countries[i];
+            return `<option value="${addContent}">${addContent}</option>`;
+        }
+    }
+    // uploadDataFirebase(){
+    //     firebasePush.postsCollection.add({
+    //         confrimed = this.TotalConfirmed,
+    //     })
+    // }
 }
 
 class GlobalInfo {
@@ -62,10 +81,6 @@ class Country {
         this.TotalDeaths = country.TotalDeaths;
         this.TotalRecovered = country.TotalRecovered;
 
-    }
-
-    get writeDropdown() {
-        return `<select id="land" name="land"><option value="${this.countries}">${this.countries}</option>`
     }
 
 }
