@@ -15,6 +15,7 @@ class allData {
     }
     async init() {
         await this.fetch();
+        this.globalInfo();
         this.filter();
         this.render();
         // this.uploadDataFirebase();
@@ -26,14 +27,19 @@ class allData {
         this.countries = json.Countries.map(country => {
             return new Country(country);
         })
-        // // global
-        // this.global = json.Global.map(global => {
-        //     return new GlobalInfo(global);
-        // })
-        console.log('Fetch JSON', json)
+        this.globalCases = json.Global.TotalConfirmed;
+        this.globalDeaths = json.Global.TotalDeaths;
+        this.globalRecovered = json.Global.TotalRecovered;
+
+
     }
     submitForm() {
 
+    }
+    globalInfo() {
+        document.getElementById('totalCases').innerHTML = this.globalCases;
+        document.getElementById('totalDeaths').innerHTML = this.globalDeaths;
+        document.getElementById('totalRecovered').innerHTML = this.globalRecovered;
     }
     bindEvents() {
         let inputsUser = document.getElementsByName('select');
@@ -46,7 +52,7 @@ class allData {
     }
     render() {
         let writeDropdown = '';
-        this.htmlElement.insertAdjacentHTML('beforeend', writeDropdown);
+        this.htmlElement.insertAdjacentHTML('beforeend', this.writeDropdownList());
         this.writeDropdownList();
         this.bindEvents();
     }
@@ -63,12 +69,6 @@ class allData {
     //         confrimed = this.TotalConfirmed,
     //     })
     // }
-}
-
-class GlobalInfo {
-    constructor(global) {
-        this.TotalConfirmed = global.TotalConfirmed;
-    }
 }
 
 class Country {
@@ -89,5 +89,4 @@ class Country {
 // deel1
 const test = new allData('land');
 console.log(test.init());
-
 console.log("Informatie inladen", test);
