@@ -1,40 +1,43 @@
 <!DOCTYPE html>
 <html lang="nl  ">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" type="text/css" />
-    <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-firestore.js"></script>
-    <title>COVID19 Data</title>
-  </head>
 
-  <body>
-    <h1>Alle data van COVID19</h1>
-    <div id="mainData">
-      <div id="countrySelect">
-        <h2>Landen selecteren</h2>
-        <form action="">
-          <label for="landen">Kies een land:</label>
-          <select id="land" name="land">
-          </select>
-          <button type="submit" onclick="">BEVESTIGEN</button>
-        </form>
-      </div>
-      <div id="topHalf">
-        <h2>Coronavirus Cases:</h2>
-        <span id="totalCases"></span>
-        <h2>Deaths:</h2>
-        <span id="totalDeaths"></span>
-        <h2>Recovered:</h2>
-        <span id="totalRecovered"></span>
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" type="text/css" />
+  <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-firestore.js"></script>
+  <title>COVID19 Data</title>
+</head>
+
+<body>
+  <h1>Alle data van COVID19</h1>
+  <div id="mainData">
+    <div id="countrySelect">
+      <h2>Landen selecteren</h2>
+      <form action="">
+        <label for="landen">Kies een land:</label>
+        <select id="land" name="land">
+          <option>KIES EEN LAND</option>
+        </select>
+        <button type="submit" onclick="">BEVESTIGEN</button>
+      </form>
     </div>
-    <div id="bottomHalf">
-      <h1>Grafiek</h1>
-      <canvas id="myChart"></canvas>
+    <div id="topHalf">
+      <h2>Coronavirus Cases:</h2>
+      <span id="totalCases"></span>
+      <h2>Deaths:</h2>
+      <span id="totalDeaths"></span>
+      <h2>Recovered:</h2>
+      <span id="totalRecovered"></span>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-    <script src="./main.js" type="module"></script>
-  </body>
+  </div>
+  <div id="bottomHalf">
+    <h1>Grafiek</h1>
+    <canvas id="myChart"></canvas>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  <script src="./main.js" type="module"></script>
+</body>
+
 </html>

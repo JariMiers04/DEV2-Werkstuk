@@ -10,11 +10,12 @@ class allData {
     constructor(htmlElement, chart) {
         this.countries = [];
         this.global = [];
-        this.htmlElement = document.getElementById(htmlElement);
+        this.htmlElement = document.getElementById('land');
         // this.chart = chart;
     }
     async init() {
         await this.fetch();
+        this.reset();
         this.globalInfo();
         this.filter();
         this.render();
@@ -36,6 +37,9 @@ class allData {
     submitForm() {
 
     }
+    reset() {
+
+    }
     globalInfo() {
         document.getElementById('totalCases').innerHTML = this.globalCases;
         document.getElementById('totalDeaths').innerHTML = this.globalDeaths;
@@ -52,17 +56,21 @@ class allData {
     }
     render() {
         let writeDropdown = '';
-        this.htmlElement.insertAdjacentHTML('beforeend', this.writeDropdownList());
         this.writeDropdownList();
         this.bindEvents();
     }
 
     // landen van api zetten in een html dropdownlist
     writeDropdownList() {
-        for (i = 0; i < this.countries.length; i++) {
-            let addContent = this.countries[i];
-            return `<option value="${addContent}">${addContent}</option>`;
-        }
+        let htmlString = `<option>KIES EEN LAND</option>`;
+
+        this.countries.forEach((country) => {
+            htmlString += `
+            <option value="${country.Country}">${country.Country}</option>
+            `
+        })
+        console.log(htmlString);
+        this.htmlElement.innerHTML = htmlString;
     }
     // uploadDataFirebase(){
     //     firebasePush.postsCollection.add({
