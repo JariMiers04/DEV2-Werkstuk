@@ -1,12 +1,17 @@
 "use strict";
 
 import Utils from "./Utils.js";
+// import {
+//     firebasePush
+// } from "./firebase.js";
+
 
 class allData {
     constructor(htmlElement, chart) {
         this.countries = [];
+        this.global = [];
         this.htmlElement = document.getElementById(htmlElement);
-        this.chart = chart;
+        // this.chart = chart;
     }
     async init() {
         await this.fetch();
@@ -16,8 +21,13 @@ class allData {
     async fetch() {
         const response = await fetch("https://api.covid19api.com/summary");
         const json = await response.json();
-        this.countries = json.locations.map(location => {
-            return new Country(location);
+        // landen
+        this.countries = json.Countries.map(country => {
+            return new Country(country);
+        })
+        // global
+        this.global = json.Global.map(global => {
+            return new GlobalInfo(global);
         })
         console.log('Fetch JSON', json)
     }
@@ -26,8 +36,8 @@ class allData {
         console.log('Inputs', inputsUser);
     }
     filter() {
-        this.countries.sort(Utils.sortCountriesBy(this.confirmed));
-        this.countries = this.countries.slice(0, 10);
+        // this.countries.sort(Utils.sortCountriesBy(this.confirmed));
+        // this.countries = this.countries.slice(0, 10);
     }
     render() {
         let writeDropdown = '';
@@ -36,13 +46,21 @@ class allData {
     }
 }
 
+class GlobalInfo {
+    constructor(global) {
+        this.TotalConfirmed = global.TotalConfirmed;
+    }
+}
 
 class Country {
-    constructor(location) {
+    constructor(country) {
         // super(allData);
-        this.countries = location.Countries;
-        this.confirmed = location.TotalConfirmed;
-        this.country_code = location.CountryCode;
+        // landen
+        this.Country = country.Country;
+        this.CountryCode = country.CountryCode;
+        this.TotalConfirmed = country.TotalConfirmed;
+        this.TotalDeaths = country.TotalDeaths;
+        this.TotalRecovered = country.TotalRecovered;
 
     }
 
@@ -52,10 +70,9 @@ class Country {
 
 }
 
+
 // deel1
-const test = new allData();
+const test = new allData('land');
 console.log(test.init());
 
-
-const testCountry = new Country(location);
-console.log("Countries inladen", testCountry);
+console.log("Informatie inladen", test);
