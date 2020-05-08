@@ -44,40 +44,29 @@ class allData {
         console.log(pinda)
     }
 
-    selectCheckedInput() {
-        console.log(this.button);
-        this.selectedCountry.forEach((selected) => {
-            if (selected.checked) {
-                console.log(selected = this.selectedCountry.value);
-            }
-        })
-    }
+    // selectCheckedInput() {
+    //     console.log(this.button);
+    //     this.selectedCountry.forEach((selected) => {
+    //         if (selected.checked) {
+    //             console.log(selected = this.selectedCountry.value);
+    //         }
+    //     })
+    // }
 
-    submit(event) {
-        event.preventDefault()
-    }
     globalInfo() {
         document.getElementById('totalCases').innerHTML = this.globalCases;
         document.getElementById('totalDeaths').innerHTML = this.globalDeaths;
         document.getElementById('totalRecovered').innerHTML = this.globalRecovered;
     }
 
-    bindEvents() {
-        let inputsUser = document.getElementsByName('select');
-        console.log('Inputs', inputsUser);
-        this.htmlElement.addEventListener('select', this.submit.bind(this));
-    }
+    // bindEvents() {
+    //     let inputsUser = document.getElementsByName('select');
+    //     console.log('Inputs', inputsUser);
+    //     this.htmlElement.addEventListener('select', this.submit.bind(this));
+    // }
     filter() {
         // this.countries.sort(Utils.sortCountriesBy(this.TotalConfirmed));
         // this.countries = this.countries.slice(0, 10);
-    }
-    render() {
-        this.writeDropdownList();
-        this.selectInput();
-        this.selectCheckedInput();
-        this.globalInfo();
-        this.filter();
-        this.bindEvents();
     }
 
     // landen van api zetten in een html dropdownlist
@@ -91,6 +80,18 @@ class allData {
         })
         // console.log(htmlString);
         this.htmlElement.innerHTML = htmlString;
+    }
+    render(event) {
+        event.preventDefault();
+        this.writeDropdownList();
+        this.globalInfo();
+        // this.selectCheckedInput();
+        this.selectInput();
+        this.filter();
+        this.bindEvents();
+    }
+    bindEvents() {
+        this.htmlElement.addEventListener('submit', this.render.bind(this));
     }
     // uploadDataFirebase(){
     //     firebasePush.postsCollection.add({
@@ -154,3 +155,4 @@ console.log("Informatie inladen", test);
 
 
 const chart = new Chart();
+console.log("Chart", chart);
