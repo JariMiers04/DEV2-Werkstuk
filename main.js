@@ -7,16 +7,14 @@ import {
 
 
 class allData {
-    constructor(htmlElement, chart) {
+    constructor(htmlElement) {
         this.countries = [];
         this.global = [];
         this.htmlElement = document.getElementById('land');
         this.button = document.getElementById('btn');
-        // this.chart = chart;
     }
     async init() {
         await this.fetch();
-        this.reset();
         this.render();
         // this.uploadDataFirebase();
     }
@@ -37,9 +35,20 @@ class allData {
 
     }
     selectInput() {
-        this.countries.forEach((country) => {
-            if (this.htmlString) {
-                console.log('SelectInput', country);
+        this.selectedCountry = console.log(document.getElementById("land"));
+        let pinda = this.button.addEventListener("click", function () {
+            document.getElementById('totalCases').innerHTML = '12345';
+            document.getElementById('totalDeaths').innerHTML = "test";
+            document.getElementById('totalRecovered').innerHTML = 'pinda';
+        });
+        console.log(pinda)
+    }
+
+    selectCheckedInput() {
+        console.log(this.button);
+        this.selectedCountry.forEach((selected) => {
+            if (selected.checked) {
+                console.log(selected = this.selectedCountry.value);
             }
         })
     }
@@ -64,8 +73,9 @@ class allData {
     }
     render() {
         this.writeDropdownList();
-        this.globalInfo();
         this.selectInput();
+        this.selectCheckedInput();
+        this.globalInfo();
         this.filter();
         this.bindEvents();
     }
@@ -102,9 +112,37 @@ class Country {
 
 }
 
+// werkcollege 9 DEV2
 class Chart {
     constructor() {
-
+        var ctx = document.getElementById('myChart').getContext('2d');
+        const chart = (ctx, {
+            // The type of chart we want to create
+            type: 'line',
+            // The data for our dataset
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May'],
+                datasets: []
+            },
+            // Configuration options go here
+            options: {}
+        });
+    }
+    addData(id, data) {
+        console.log('Chart added Data', data);
+        const newDataset = Utils.convertDetailedDataToDataset(id, data);
+        console.log('Converted data', newDataset);
+        this.data.labels = newDataset.labels;
+        this.data.datasets.push(newDataset);
+        this.update();
+    }
+    removeData(id) {
+        console.log("Remove data", id);
+        this.data.datasets = this.data.datasets.filter(dataset => {
+            return dataset.di !== id;
+        })
+        console.log(this.data.datasets);
+        this.update();
     }
 }
 
@@ -113,3 +151,6 @@ class Chart {
 const test = new allData('land');
 console.log(test.init());
 console.log("Informatie inladen", test);
+
+
+const chart = new Chart();
