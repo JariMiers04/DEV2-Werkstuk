@@ -11,13 +11,12 @@ class allData {
         this.countries = [];
         this.global = [];
         this.htmlElement = document.getElementById('land');
+        this.button = document.getElementById('btn');
         // this.chart = chart;
     }
     async init() {
         await this.fetch();
         this.reset();
-        this.globalInfo();
-        this.filter();
         this.render();
         // this.uploadDataFirebase();
     }
@@ -34,29 +33,40 @@ class allData {
 
 
     }
-    submitForm() {
-
-    }
     reset() {
 
+    }
+    selectInput() {
+        this.countries.forEach((country) => {
+            if (this.htmlString) {
+                console.log('SelectInput', country);
+            }
+        })
+    }
+
+    submit(event) {
+        event.preventDefault()
     }
     globalInfo() {
         document.getElementById('totalCases').innerHTML = this.globalCases;
         document.getElementById('totalDeaths').innerHTML = this.globalDeaths;
         document.getElementById('totalRecovered').innerHTML = this.globalRecovered;
     }
+
     bindEvents() {
         let inputsUser = document.getElementsByName('select');
         console.log('Inputs', inputsUser);
-        this.formElement.addEventListener('submit', this.submitForm.bind(this));
+        this.htmlElement.addEventListener('select', this.submit.bind(this));
     }
     filter() {
-        // this.countries.sort(Utils.sortCountriesBy(this.confirmed));
+        // this.countries.sort(Utils.sortCountriesBy(this.TotalConfirmed));
         // this.countries = this.countries.slice(0, 10);
     }
     render() {
-        let writeDropdown = '';
         this.writeDropdownList();
+        this.globalInfo();
+        this.selectInput();
+        this.filter();
         this.bindEvents();
     }
 
@@ -69,7 +79,7 @@ class allData {
             <option value="${country.Country}">${country.Country}</option>
             `
         })
-        console.log(htmlString);
+        // console.log(htmlString);
         this.htmlElement.innerHTML = htmlString;
     }
     // uploadDataFirebase(){
@@ -81,7 +91,6 @@ class allData {
 
 class Country {
     constructor(country) {
-        // super(allData);
         // landen
         this.Country = country.Country;
         this.CountryCode = country.CountryCode;
@@ -91,6 +100,12 @@ class Country {
 
     }
 
+}
+
+class Chart {
+    constructor() {
+
+    }
 }
 
 
