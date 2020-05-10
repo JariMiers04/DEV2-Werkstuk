@@ -159,3 +159,6 @@ console.log("Informatie inladen", test);
 
 const chart = new Chart();
 console.log("Chart", chart);
+
+
+export default;
