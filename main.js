@@ -12,6 +12,8 @@ class allData {
         this.global = [];
         this.htmlElement = document.getElementById('land');
         this.button = document.getElementById('btn');
+        console.log("Firebase", firebasePush)
+
     }
     async init() {
         await this.fetch();
@@ -28,7 +30,6 @@ class allData {
         this.globalCases = json.Global.TotalConfirmed;
         this.globalDeaths = json.Global.TotalDeaths;
         this.globalRecovered = json.Global.TotalRecovered;
-
 
     }
     reset() {
@@ -82,7 +83,9 @@ class allData {
         this.htmlElement.innerHTML = htmlString;
     }
     render(event) {
-        event.preventDefault();
+        let test99 = firebasePush.firebaseUpdate();
+        console.log("123456", test99);
+        // event.preventDefault();
         this.writeDropdownList();
         this.globalInfo();
         // this.selectCheckedInput();
@@ -156,3 +159,5 @@ console.log("Informatie inladen", test);
 
 const chart = new Chart();
 console.log("Chart", chart);
+
+export const main = new allData();

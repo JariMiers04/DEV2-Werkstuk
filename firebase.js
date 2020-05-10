@@ -8,7 +8,7 @@ firebase.initializeApp({
 class Firebase {
     constructor() {
         this.db = firebase.firestore();
-        this.artistenCollection = this.db.collection("covid19");
+        this.globalCollection = this.db.collection("covid19");
     }
     convertQuerySnapshotToRegularArray = (querySnapshot) => querySnapshot.docs.map((item) => ({
         id: item.id,
