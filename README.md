@@ -7,3 +7,8 @@ Bronnen:
 https://www.chartjs.org/docs/latest/getting-started/
 
 https://www.w3schools.com/tags/tag_select.asp
+
+
+LINK NAAR NETLIFY:
+
+
